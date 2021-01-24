@@ -1,33 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/user');
 
+dotenv.config();
 const app = express();
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pascalflixdb'
-  })
-  connection.connect();
-  connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
-    if (err) throw err
-  
-    console.log('The solution is: ', rows[0].solution)
-  })
-  
-  connection.end()
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-//     next();
-//   });
-// app.use(bodyParser.json());+
+app.use('/api/users', userRoutes);
 
 
-
-
-// module.exports=app;
+module.exports=app;
