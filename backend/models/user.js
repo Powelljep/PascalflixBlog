@@ -23,7 +23,7 @@ exports.createUser = (data, callback) => {
 
 exports.getUsers = callback => {
     connection.query(
-        `SELECT firstname, lastname, email, username FROM users`,
+        `SELECT id, firstname, lastname, email, username FROM users`,
         [],
         (err, results, fields) => {
             if (err){
@@ -36,7 +36,7 @@ exports.getUsers = callback => {
 
 exports.getUserById = (id, callback) => {
     connection.query(
-        `SELECT firstname, lastname, email, username FROM users WHERE id = ? `,
+        `SELECT id, firstname, lastname, email, username FROM users WHERE id = ? `,
         [id],
         (err, results, fields) => {
             if(err) {

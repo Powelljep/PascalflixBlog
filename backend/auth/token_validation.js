@@ -1,7 +1,5 @@
 const { verify } = require("jsonwebtoken");
 
-cont { verify } = require ("jsonwebtoken");
-
 exports.checkToken = (req, res, next) => {
     let token = req.get("authorization");
     if(token) {
