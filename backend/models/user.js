@@ -55,7 +55,7 @@ exports.updateUser = (data, callback) => {
             if (err) {
                 return callback(err);
             }
-            return callback(null, results[0]);
+            return callback(null, results);
         }
     )
 };

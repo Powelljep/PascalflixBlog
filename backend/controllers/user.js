@@ -113,11 +113,11 @@ exports.login = (req, res, next) => {
                 message: " Invalid email id or password"
             });
         }
-        const result = bcrypt.compareSync(body.password, results[0].password);
+        const result = bcrypt.compareSync(body.password, results.password);
         if (result) {
             results.password = undefined;
             const jsontoken = jwt.sign({result: results},process.env.JSONTOKEN,{
-                expiresIn: "1hr"
+                expiresIn: "1h"
             });
             return res.json({
                 success: 1,
